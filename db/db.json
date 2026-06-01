@@ -1,0 +1,33 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "День рождения",
+      "description": "Купить подарок",
+      "type": "text",
+      "important": true,
+      "image": "",
+      "items": []
+    },
+    {
+      "id": 2,
+      "title": "Покупки",
+      "description": "",
+      "type": "checklist",
+      "important": false,
+      "image": "",
+      "items": [
+        {
+          "id": 1,
+          "text": "Молоко",
+          "completed": false
+        },
+        {
+          "id": 2,
+          "text": "Хлеб",
+          "completed": true
+        }
+      ]
+    }
+  ]
+}

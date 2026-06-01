@@ -1,0 +1,114 @@
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.35);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 500px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 24px;
+
+    position: relative;
+}
+
+.modal-title {
+    font-size: 32px;
+    color: var(--primary);
+
+    margin-bottom: 20px;
+}
+
+.modal-close {
+    position: absolute;
+
+    right: 20px;
+    top: 20px;
+
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+
+    border: none;
+
+    background: var(--gray-light);
+
+    border-radius: var(--radius);
+
+    padding: 12px;
+}
+
+.form-textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+}
+
+.checklist-builder {
+    margin-top: 15px;
+}
+
+.checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.check-item {
+    display: flex;
+    gap: 10px;
+}
+
+.check-item input {
+    flex: 1;
+}
+
+.remove-check {
+    width: 36px;
+
+    background: crimson;
+
+    color: white;
+
+    border-radius: 6px;
+}

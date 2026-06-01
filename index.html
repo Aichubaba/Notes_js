@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>To Do List</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/cards.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+<header class="header">
+
+    <div class="container">
+
+        <h1 class="logo">
+            To Do List
+        </h1>
+
+    </div>
+
+</header>
+
+<main class="main">
+
+    <div class="container">
+
+        <div class="toolbar">
+
+            <input
+                id="search"
+                class="search"
+                type="text"
+                placeholder="Поиск"
+            >
+
+            <button
+                id="addBtn"
+                class="btn btn-primary"
+            >
+                Добавить заметку
+            </button>
+
+        </div>
+
+        <section
+            id="notesContainer"
+            class="notes-grid"
+        ></section>
+
+    </div>
+
+</main>
+
+<div
+    id="modal"
+    class="modal hidden"
+></div>
+
+<script
+    type="module"
+    src="./js/app.js"
+></script>
+
+</body>
+</html>

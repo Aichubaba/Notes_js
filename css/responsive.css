@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .notes-grid {
+        justify-content: center;
+    }
+
+    .note-card {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}

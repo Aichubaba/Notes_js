@@ -1,0 +1,91 @@
+.notes-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.note-card {
+    width: 260px;
+    min-height: 220px;
+
+    background: white;
+
+    border-radius: var(--radius);
+
+    padding: 16px;
+
+    position: relative;
+
+    box-shadow: var(--shadow);
+}
+
+.note-card.important {
+    background: var(--primary);
+    color: white;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    background: rgba(0,0,0,.08);
+}
+
+.note-description {
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.note-image {
+    width: 100%;
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: var(--radius);
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checklist li {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.checklist input {
+    width: 16px;
+    height: 16px;
+}
