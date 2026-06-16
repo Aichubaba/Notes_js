@@ -10,15 +10,213 @@
         width: 100%;
     }
 
+    .btn-add {
+        width: 100%;
+    }
+
     .notes-grid {
         justify-content: center;
+        gap: 16px;
     }
 
     .note-card {
         width: 100%;
+        height: auto;
+        min-height: 300px;
+    }
+
+    .note-image {
+        width: 100%;
+        height: auto;
+        max-height: 260px;
+    }
+
+    .preview-image {
+        width: 100%;
+        height: auto;
+        max-height: 260px;
     }
 
     .modal-content {
         width: 95%;
+        padding: 20px;
+    }
+
+    .modal-content.confirm-modal {
+        height: auto;
+        min-height: 200px;
+        padding-bottom: 80px;
+    }
+
+    .confirm-btn {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .modal-title {
+        font-size: 28px;
+        margin-bottom: 16px;
+    }
+
+    .form-fields {
+        gap: 16px;
+    }
+
+    .modal-footer {
+        margin-top: 40px;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        left: 24px;
+    }
+
+    .checklist-item-row {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .header {
+        height: 64px;
+        padding: 12px 0;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        left: 16px;
+    }
+
+    .main {
+        padding-top: 16px;
+    }
+
+    .search {
+        height: 46px;
+        padding: 12px;
+    }
+
+    .btn-add {
+        height: 44px;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    .notes-grid {
+        gap: 12px;
+    }
+
+    .note-card {
+        padding: 14px;
+        gap: 12px;
+        min-height: 260px;
+    }
+
+    .card-header {
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .card-title-group {
+        gap: 10px;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .card-icon img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .note-description {
+        font-size: 14px;
+    }
+
+    .checklist {
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        padding: 16px;
+        max-height: 85vh;
+    }
+
+    .modal-title {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .modal-close {
+        right: 12px;
+        top: 14px;
+    }
+
+    .modal-close img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .form-fields {
+        gap: 14px;
+    }
+
+    .dropzone-text {
+        font-size: 16px;
+    }
+
+    .image-dropzone {
+        height: 80px;
+    }
+
+    .modal-footer {
+        margin-top: 24px;
+    }
+
+    .create-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .checklist-input {
+        font-size: 14px;
+    }
+
+    .icon-options {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .icon-item-wrap {
+        width: 32px;
+        height: 32px;
+    }
+
+    .custom-select-header {
+        padding: 10px 12px;
+    }
+
+    .custom-options .option {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .confirm-btn {
+        width: 100%;
+        position: static;
+        margin-top: 16px;
+    }
+
+    .modal-content.confirm-modal {
+        padding-bottom: 20px;
     }
 }
