@@ -1,5 +1,5 @@
 import {
-  getNotes,
+  getNotes, clearNotesCache,
   updateChecklistItem,
 } from "./api.js";
 
@@ -24,8 +24,11 @@ import {
 import { parseId } from './helpers.js';
 
 export async function loadNotes() {
-  const notes =
-    await getNotes();
+  const container = document.querySelector("#notesContainer");
+  container.innerHTML = '<p class="loading-text">Загрузка...</p>';
+
+  clearNotesCache();
+  const notes = await getNotes({ force: true });
 
   renderNotes(notes);
 }

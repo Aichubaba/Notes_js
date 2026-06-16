@@ -11,12 +11,12 @@ export function renderNotes(notes) {
 
 function escapeHtml(str) {
   if (!str) return "";
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === "&") return "&amp;";
-    if (m === "<") return "&lt;";
-    if (m === ">") return "&gt;";
-    return m;
-  });
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function createCard(note) {
@@ -29,7 +29,8 @@ function createCard(note) {
   }
 
   if (note.type === "image") {
-    content = note.image ? `<img src="${escapeHtml(note.image)}" class="note-image">` : "";
+    const imgSrc = note.image && typeof note.image === 'string' && note.image.startsWith('data:') ? note.image : '';
+    content = imgSrc ? `<img src="${escapeHtml(imgSrc)}" class="note-image">` : '';
   }
 
   if (note.type === "checklist") {

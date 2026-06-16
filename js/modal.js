@@ -10,6 +10,16 @@ export function initModal() {
       closeModal();
     }
   });
+
+  document.addEventListener("click", closeDropdowns);
+}
+
+function closeDropdowns() {
+  document.querySelectorAll(".custom-select.open").forEach(el => {
+    el.classList.remove("open");
+    const opts = el.querySelector(".custom-options");
+    if (opts) opts.classList.add("hidden");
+  });
 }
 
 export function openConfirmModal({ title = "Подтвердите действие", text = "", confirmText = "Подтвердить" } = {}) {
@@ -31,6 +41,7 @@ export function openConfirmModal({ title = "Подтвердите действ�
       resolve(result);
       closeModal();
       modal.removeEventListener("click", onClick);
+      confirmBtn.removeEventListener("click", onConfirm);
     }
 
     function onClick(e) {
@@ -38,8 +49,10 @@ export function openConfirmModal({ title = "Подтвердите действ�
       if (e.target.closest(".modal-close")) cleanup(false);
     }
 
+    function onConfirm() { cleanup(true); }
+
     modal.addEventListener("click", onClick);
-    confirmBtn.addEventListener("click", () => cleanup(true));
+    confirmBtn.addEventListener("click", onConfirm);
   });
 }
 
@@ -188,10 +201,6 @@ function initTypeSwitcher() {
     }
   });
 
-  document.addEventListener('click', () => {
-    options.classList.add('hidden');
-    select.classList.remove('open');
-  });
 }
 
 
@@ -260,10 +269,10 @@ function autoResizeTextarea(el) {
 }
 
 function addChecklistRow(wrapper, value = '') {
-  const id = Date.now();
+  const id = crypto.randomUUID();
   const html = `
     <div class="checklist-item-row" data-id="${id}">
-      <input type="checkbox" class="checklist-checkbox" disabled>
+      <input type="checkbox" class="checklist-checkbox">
       <textarea class="checklist-input" placeholder="Введите название пункта">${value}</textarea>
       <button type="button" class="remove-media-btn">
         <img src="assets/X.png" alt="" width="16" height="16">

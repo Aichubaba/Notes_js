@@ -1,7 +1,7 @@
-export function generateChecklistItems() {
+export function generateChecklistItems(container = document) {
   const items = [];
 
-  document
+  container
     .querySelectorAll(".checklist-item-row")
     .forEach((row) => {
       const input = row.querySelector(".checklist-input");
@@ -10,7 +10,7 @@ export function generateChecklistItems() {
 
       if (value) {
         items.push({
-          id: Date.now() + Math.random(),
+          id: crypto.randomUUID(),
           text: value,
           completed: checkbox.checked,
         });
@@ -46,6 +46,10 @@ export function resizeImageToDataUrl(file, maxDimension = 800, quality = 0.8) {
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Canvas 2D context not available'));
+          return;
+        }
         ctx.drawImage(img, 0, 0, width, height);
         resolve(canvas.toDataURL('image/jpeg', quality));
       };
@@ -79,8 +83,7 @@ export function normalizeNote(note) {
       text: typeof it.text === 'string' ? it.text : String(it.text || ''),
     }));
   }
-  // some code uses `items` instead of `checklist`
-  if (!Array.isArray(out.items) && Array.isArray(out.checklist)) {
+  if (Array.isArray(out.checklist) && !Array.isArray(out.items)) {
     out.items = out.checklist;
   }
   return out;

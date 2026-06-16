@@ -9,6 +9,7 @@ body {
 }
 
 .header {
+    position: relative;
     background: var(--bg-violet);
     height: 80px;
     width: 100%;
@@ -17,8 +18,9 @@ body {
 
 .header h1 {
   position: absolute;
-  top: 0px;
+  top: 50%;
   left: 86px;
+  translate: 0 -50%;
   font-weight: 800;
   font-size: 48px;
   color: var(--white);
@@ -59,8 +61,6 @@ body {
     height: 50px;
 
     border-radius: var(--radius);
-
-    background: var(--bg-gray);
 
     transition: var(--transition);
 

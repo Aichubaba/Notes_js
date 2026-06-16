@@ -1,23 +1,37 @@
 import { API_URL } from "./constants.js";
 import { parseId, normalizeNote } from './helpers.js';
 
-async function fetchJson(url) {
-  const res = await fetch(url);
+let notesCache = null;
+
+async function fetchJson(url, options = {}) {
+  const res = await fetch(url, options);
   if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
   return res.json();
 }
 
-export async function getNotes() {
+export function getCachedNotes() {
+  return notesCache || [];
+}
+
+export function clearNotesCache() {
+  notesCache = null;
+}
+
+export async function getNotes({ force, signal } = {}) {
+  if (!force && notesCache) return notesCache;
   try {
-    return await fetchJson(API_URL);
+    notesCache = await fetchJson(API_URL, { signal });
+    return notesCache;
   } catch (err) {
-    // fallback: read local db file so UI still renders when json-server is down
+    if (err.name === 'AbortError') throw err;
     try {
       const local = await fetchJson("/db/db.json");
-      return local.notes || [];
+      notesCache = local.notes || [];
+      return notesCache;
     } catch (err2) {
       console.error("Failed to load notes from API and local db:", err, err2);
-      return [];
+      notesCache = [];
+      return notesCache;
     }
   }
 }
@@ -40,57 +54,42 @@ export async function getNote(id) {
 }
 
 export async function createNote(note) {
-  const response = await fetch(
-    API_URL,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type":
-          "application/json",
-      },
-      body: JSON.stringify(note),
-    }
-  );
-
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(note),
+  });
+  if (!response.ok) throw new Error(`Create failed: ${response.status}`);
   return response.json();
 }
 
-export async function updateNote(
-  id,
-  note
-) {
-  const response = await fetch(
-    `${API_URL}/${id}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type":
-          "application/json",
-      },
-      body: JSON.stringify(note),
-    }
-  );
-
+export async function updateNote(id, note) {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(note),
+  });
+  if (!response.ok) throw new Error(`Update failed: ${response.status}`);
   return response.json();
 }
 
 export async function deleteNote(id) {
-  await fetch(`${API_URL}/${id}`, {
+  const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
   });
+  if (!response.ok) throw new Error(`Delete failed: ${response.status}`);
 }
 
 export async function updateChecklistItem(noteId, itemId, completed) {
-  const noteRaw = await getNote(noteId);
-  const note = normalizeNote(noteRaw);
-  const itemIdNum = parseId(itemId);
-  const items = (note.items || []).map(item =>
-    item.id === itemIdNum ? { ...item, completed } : item
-  );
   try {
+    const noteRaw = await getNote(noteId);
+    const note = normalizeNote(noteRaw);
+    const itemIdNum = parseId(itemId);
+    const items = (note.items || []).map(item =>
+      item.id === itemIdNum ? { ...item, completed } : item
+    );
     return await updateNote(noteId, { items });
   } catch (err) {
-    // Если сервер недоступен — сохраните операцию в localStorage для позже
     try {
       const key = 'pendingUpdates';
       const raw = localStorage.getItem(key);
@@ -100,7 +99,6 @@ export async function updateChecklistItem(noteId, itemId, completed) {
     } catch (err2) {
       console.error('Failed to queue pending update', err2);
     }
-    // Вернуть предполагаемый результат, чтобы UI продолжил работать
-    return { id: noteId, items };
+    return { id: noteId, items: [] };
   }
 }
