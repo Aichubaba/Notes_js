@@ -1,17 +1,12 @@
 :root {
-
-    --primary: #9D95FF;
-    --primary-dark: #8178ff;
-
     --white: #ffffff;
 
-    --bg: #f5f5f5;
+    --bg: #fafafa;
+    --bg-violet: #918FF0;
+    --bg-gray: #ebebeb;
 
-    --text: #454545;
-
-    --gray: #d9d9d9;
-
-    --gray-light: #efefef;
+    --text-gray: #777777;
+    --text-violet: #6864F9;
 
     --shadow:
         0 4px 12px rgba(0,0,0,.08);

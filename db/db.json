@@ -1,33 +1,36 @@
 {
   "notes": [
     {
-      "id": 1,
+      "id": "1",
       "title": "День рождения",
-      "description": "Купить подарок",
+      "description": "Какое-то описание: день рождения кого, когда, где и т.д. ",
       "type": "text",
       "important": true,
+      "icon": "cake.png",
       "image": "",
       "items": []
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Покупки",
       "description": "",
       "type": "checklist",
       "important": false,
+      "icon": "shopping-cart.png",
       "image": "",
       "items": [
         {
-          "id": 1,
+          "id": 1781600064616.8733,
           "text": "Молоко",
           "completed": false
         },
         {
-          "id": 2,
+          "id": 1781600064616.214,
           "text": "Хлеб",
-          "completed": true
+          "completed": false
         }
       ]
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
